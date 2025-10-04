@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinancelyAI - Family Finance Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1e1b4b; /* indigo-950 */
+            background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
+            background-size: 20px 20px;
+        }
+        /* For custom scrollbars */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e1b4b; /* indigo-950 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4338ca; /* indigo-700 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6d28d9; /* purple-700 */
+        }
+        /* Custom form control focus styles to match app theme */
+        select, input[type="text"], input[type="number"], input[type="date"] {
+            border: 1px solid #475569; /* slate-600 */
+            color: #e2e8f0; /* slate-200 */
+            padding: 0.75rem;
+        }
+        select:focus, input:focus {
+            outline: none;
+            border-color: #d946ef; /* fuchsia-500 */
+            box-shadow: 0 0 0 2px #be185d; /* pink-700 */
+        }
+        
+        /* Custom Animations */
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up {
+            animation: fade-in-up 0.5s ease-out forwards;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+        .animate-shimmer {
+            background: linear-gradient(to right, #1e293b 8%, #334155 18%, #1e293b 33%);
+            background-size: 2000px 100px;
+            animation: shimmer 2s infinite linear;
+        }
+
+        /* Print-specific styles for PDF export */
+        @media print {
+            body {
+                background-color: #ffffff !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .print-content {
+                display: block !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .print-content .bg-slate-800,
+            .print-content .bg-slate-900,
+            .print-content .bg-slate-700\/50 {
+                background-color: #ffffff !important;
+                color: #000000 !important;
+                box-shadow: none !important;
+                border: 1px solid #e2e8f0 !important; /* slate-200 */
+            }
+            .print-content h1, .print-content h2, .print-content h3, .print-content p, .print-content span, .print-content th, .print-content td {
+                color: #000000 !important;
+            }
+            .print-content table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+             .print-content th, .print-content td {
+                border: 1px solid #cbd5e1 !important; /* slate-300 */
+                padding: 8px;
+            }
+            .print-content th {
+                background-color: #f1f5f9 !important; /* slate-100 */
+            }
+        }
+
+        /* Responsive Table for Mobile */
+        @media screen and (max-width: 768px) {
+            .responsive-table thead {
+                display: none;
+            }
+            .responsive-table tr {
+                display: block;
+                margin-bottom: 1rem;
+                border: 1px solid #475569; /* slate-600 */
+                border-radius: 0.5rem;
+                padding: 0.75rem;
+                background-color: #1e293b; /* slate-800 */
+            }
+            .responsive-table td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.5rem 0;
+                text-align: right;
+                border-bottom: 1px solid #334155; /* slate-700 */
+            }
+            .responsive-table tr td:last-child {
+                border-bottom: none;
+            }
+            .responsive-table td:before {
+                content: attr(data-label);
+                font-weight: bold;
+                color: #94a3b8; /* slate-400 */
+                text-align: left;
+                padding-right: 1rem;
+            }
+            .responsive-table td.checkbox-cell {
+                justify-content: flex-start;
+                padding: 0.5rem 0;
+            }
+            .responsive-table td.checkbox-cell:before {
+                display: none;
+            }
+            .responsive-table td select {
+                width: 50%;
+                padding: 0.5rem;
+            }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
+    <script type="importmap">
+    {
+      "imports": {
+        "react": "https://aistudiocdn.com/react@^19.1.1",
+        "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+        "react/": "https://aistudiocdn.com/react@^19.1.1/",
+        "@google/genai": "https://aistudiocdn.com/@google/genai@^1.21.0"
+      }
+    }
+    </script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-indigo-950 text-gray-200">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
